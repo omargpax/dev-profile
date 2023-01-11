@@ -1,42 +1,42 @@
 // Initialize modules
-const { src, dest, watch, series } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const babel = require('gulp-babel');
-const terser = require('gulp-terser');
-const browsersync = require('browser-sync').create();
+const { src, dest, watch, series } = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const babel = require("gulp-babel");
+const terser = require("gulp-terser");
+const browsersync = require("browser-sync").create();
 
 // Use dart-sass for @use
 //sass.compiler = require('dart-sass');
 
 // Sass Task
 function cssTask() {
-  return src('app/css/style.css', { sourcemaps: true })
-    .pipe(babel({presets:['@babel/preset-env']}))
-    .pipe(terser())
-    .pipe(dest('dist', { sourcemaps: '.' }));
+  return src("app/scss/index.scss", { sourcemaps: true })
+    .pipe(sass())
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(dest("dist", { sourcemaps: "." }));
 }
 
 // JavaScript Task
 function jsTask() {
-  return src('app/js/app.js', { sourcemaps: true })
-    .pipe(babel({ presets: ['@babel/preset-env'] }))
+  return src("app/js/app.js", { sourcemaps: true })
+    .pipe(babel({ presets: ["@babel/preset-env"] }))
     .pipe(terser())
-    .pipe(dest('dist', { sourcemaps: '.' }));
+    .pipe(dest("dist", { sourcemaps: "." }));
 }
 
 // Browsersync
 function browserSyncServe(cb) {
   browsersync.init({
     server: {
-      baseDir: '.',
+      baseDir: ".",
     },
     notify: {
       styles: {
-        top: 'auto',
-        bottom: '0',
+        top: "auto",
+        bottom: "0",
       },
     },
   });
@@ -49,9 +49,9 @@ function browserSyncReload(cb) {
 
 // Watch Task
 function watchTask() {
-  watch('*.html', browserSyncReload);
+  watch("*.html", browserSyncReload);
   watch(
-    ['app/scss/**/*.scss', 'app/**/*.js'],
+    ["app/scss/**/*.scss", "app/**/*.js"],
     series(cssTask, jsTask, browserSyncReload)
   );
 }

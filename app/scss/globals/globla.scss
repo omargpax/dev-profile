@@ -1,0 +1,45 @@
+:root {
+	--prymary-color: #eceff4;
+	--bg-primary: #f1f2f6;
+	--gradient-secondary: linear-gradient(180deg, #ff9bb5 0%, #4b8cef 100%);
+	--blue-primary: #4b8cef;
+	--blue-dark: #021623;
+	--blue-secondary-opacity: rgba(75, 140, 239, 0.35);
+	--sweet-violete: rgba(165, 166, 246);
+	--green: #01c94f;
+	--yellow: #febc45;
+	--red: #fe615d;
+	--green-info: #01c94ecb;
+	--yellow-info: #febd45b6;
+	--red-info: #fe605d8c;
+	--cb: cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+html {
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--sweet-violete);
+		border-radius: 25px;
+		border: none;
+	}
+	&::-webkit-scrollbar {
+		-webkit-appearance: none;
+		&:vertical {
+			width: 5px;
+		}
+		&:horizontal {
+			height: 5px;
+		}
+	}
+	&::-webkit-scrollbar-track-piece {
+		background-color: transparent;
+	}
+}
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	background: var(--bg-primary);
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
