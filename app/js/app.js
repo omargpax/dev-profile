@@ -28,7 +28,19 @@ $("#sendMail").click(function (event) {
     );
   } else {
     var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-    if (validEmail.test(correo)) {
+    if (!validEmail.test(correo)) {
+      notificationPopup(
+        "¡Email is invalid!",
+        "fa-regular fa-circle-xmark",
+        "#fe615d"
+      );
+    } else {
+      document.getElementById("form-email").reset();
+      notificationPopup(
+        "Email sent successfully",
+        "fa-regular fa-circle-check",
+        "#01c94ecb"
+      );
       replyEmail(name, correo);
       Email.send({
         Host: "smtp.elasticemail.com",
@@ -50,25 +62,14 @@ $("#sendMail").click(function (event) {
                       </tr>
                       </table>`,
       }).then((message) => console.log(message));
-      document.getElementById("form-email").reset();
-      notificationPopup(
-        "Email sent successfully",
-        "fa-regular fa-circle-check",
-        "#01c94ecb"
-      );
-    } else {
-      notificationPopup(
-        "¡Email is invalid!",
-        "fa-regular fa-circle-xmark",
-        "#fe615d"
-      );
+      console.log("end . . . ");
     }
   }
 });
 
-export default async function replyEmail(name, correo) {
+function replyEmail(name, correo) {
   console.log("reply:", correo, name);
-   var  s = await Email.send({
+  Email.send({
     Host: "smtp.elasticemail.com",
     Username: "omarguerreropusma@gmail.com",
     Password: "2C55137944439ACA83EEDC119CB2AFBC48B2",
@@ -121,7 +122,6 @@ export default async function replyEmail(name, correo) {
         </table> 
   </div>`,
   }).then((message) => console.log(message));
-  console.log(s);
 }
 
 function notificationPopup(message, icon, colorType) {
