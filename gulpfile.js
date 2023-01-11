@@ -22,7 +22,7 @@ function cssTask() {
 // JavaScript Task
 function jsTask() {
   return src("app/js/app.js", { sourcemaps: true })
-    .pipe(babel({ presets: ["@babel/preset-env"] }))
+    .pipe(babel({ "presets": ['@babel/preset-env'], "plugins": [["@babel/plugin-transform-runtime",{"regenerator":true}]] }))
     .pipe(terser())
     .pipe(dest("dist", { sourcemaps: "." }));
 }
