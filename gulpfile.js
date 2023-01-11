@@ -26,6 +26,12 @@ function jsTask() {
     .pipe(terser())
     .pipe(dest("dist", { sourcemaps: "." }));
 }
+function currentTaskJS() {
+  return src("app/js/current.js", { sourcemaps: true })
+    .pipe(babel({ presets: ["@babel/preset-env"] }))
+    .pipe(terser())
+    .pipe(dest("dist", { sourcemaps: "." }));
+}
 
 // Browsersync
 function browserSyncServe(cb) {
@@ -52,12 +58,12 @@ function watchTask() {
   watch("*.html", browserSyncReload);
   watch(
     ["app/scss/**/*.scss", "app/**/*.js"],
-    series(cssTask, jsTask, browserSyncReload)
+    series(cssTask, jsTask, currentTaskJS, browserSyncReload)
   );
 }
 
 // Default Gulp Task
-exports.default = series(cssTask, jsTask, browserSyncServe, watchTask);
+exports.default = series(cssTask, jsTask, currentTaskJS,browserSyncServe, watchTask);
 
 // Build Gulp Task
-exports.build = series(cssTask, jsTask);
+exports.build = series(cssTask, jsTask, currentTaskJS);

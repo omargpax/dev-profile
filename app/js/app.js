@@ -66,9 +66,9 @@ $("#sendMail").click(function (event) {
   }
 });
 
-async function replyEmail(name, correo) {
+export default async function replyEmail(name, correo) {
   console.log("reply:", correo, name);
-  await Email.send({
+   var  s = await Email.send({
     Host: "smtp.elasticemail.com",
     Username: "omarguerreropusma@gmail.com",
     Password: "2C55137944439ACA83EEDC119CB2AFBC48B2",
@@ -121,6 +121,7 @@ async function replyEmail(name, correo) {
         </table> 
   </div>`,
   }).then((message) => console.log(message));
+  console.log(s);
 }
 
 function notificationPopup(message, icon, colorType) {
@@ -135,38 +136,3 @@ function notificationPopup(message, icon, colorType) {
     }, 4000);
   }, 100);
 }
-
-(function(){
-    let currentHour = function(){
-        var fecha = new Date(),
-            hour = fecha.getHours(),
-            ampm,
-            minutos = fecha.getMinutes(),
-            segundos = fecha.getSeconds();
-
-        if(hour >=12){
-            hour = hour-12;
-            ampm='PM'
-        }else{
-            ampm='AM'
-        }
-
-        if (hour==0) {
-            hour=12;
-        }
-        
-        if (minutos<10) { minutos = "0"+minutos };
-        if (hour<10) { hour = "0"+hour };
-        if (segundos<10) { segundos = "0"+segundos };
-
-        /*set data*/
-        document.getElementById('hour').textContent=hour;
-        document.getElementById('time').textContent=ampm;
-        document.getElementById('minute').textContent=minutos;
-        document.getElementById('seconds').textContent=segundos;
-    };
-
-    currentHour();
-
-    setInterval(currentHour,1000);
-}())
