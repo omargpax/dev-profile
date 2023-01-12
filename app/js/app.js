@@ -3,6 +3,37 @@ const msRun = document.getElementById("ms-run");
 const about = document.getElementById("ab-me");
 const ws = document.getElementById("end-ms");
 
+const typing = (text, tiempo, etiqueta) => {
+  let arrayCaracteres = text.split("");
+  console.log(arrayCaracteres);
+  etiqueta.innerHTML = "";
+  let i = 0;
+  setInterval(() => {
+    if (i === arrayCaracteres.length) {
+      //stay
+    } else {
+      etiqueta.textContent += arrayCaracteres[i];
+      i++;
+    }
+  }, tiempo);
+}; 
+typing("                                        Running...  ", 50, msRun);
+typing(
+  "                                                       About me:  ",
+  50,
+  about
+);
+typing(
+  "                                                           I’m Omar, developer and designer with experience creating websites and mobile applications. I specialize in Java, JavaScript, C# and have professional experience working with microservices.  ",
+  55,
+  boxtyp
+);
+typing(
+  "                                                                                                                                                                                                                                                                             ¡Welcome to my world! ☕  ",
+  50,
+  ws
+);
+
 $(".detect-view").click(function () {
   $(".detect-view").removeClass("active");
   $(this).addClass("active");
