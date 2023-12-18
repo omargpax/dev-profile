@@ -134,7 +134,7 @@ button:focus {
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   justify-content: center;
 }
 .desc > .text h2,
@@ -142,13 +142,20 @@ button:focus {
   margin: 0;
 }
 .desc > img {
-  width: 100px;
-  height: 100px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+.desc > img:hover {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+  transition: all .5s ease-in-out;
 }
 .redes {
   display: flex;
   flex-direction: row;
   width: 100%;
+  padding-left: .3rem;
   justify-content: center;
   align-items: center;
 }
