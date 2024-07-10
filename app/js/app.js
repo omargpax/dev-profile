@@ -44,19 +44,34 @@ $(".custom-close").click(function () {
   $(".custom-social-proof").stop().slideToggle("slow");
 });
 
+
+const handleFormSubmission = (name, correo, sms) => {
+  if (!name || !correo || !sms) {
+    notificationPopup("¡Fill in the boxes!", "fa-solid fa-circle-info", "#febd45b6");
+    return;
+  }
+
+  if (!validateEmail(correo)) {
+    notificationPopup("¡Email is invalid!", "fa-regular fa-circle-xmark", "#fe615d");
+    return;
+  }
+};
 const validateEmail = (email) => {
   const validEmailRegex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   return validEmailRegex.test(email);
 };
 
-
-function sendMail(){
+$("#sendMail").click(function (event) {
+  event.preventDefault();
   (function(){
     emailjs.init("JwNbapieVosMBoJTQ"); // Account public key
   })();
-
+  let  name = document.getElementById("name").value, 
+  correo = document.getElementById("email").value, 
+  sms = document.getElementById("message").value;
+  handleFormSubmission(name, correo, sms);// verify content
   var senderParams = {
-    sendername: "Omargpax dev",
+    sendername: document.querySelector("#name").value,
     to: document.querySelector("#email").value,
     subject: "Dev contact",
     replyto: "omarguerreropusma@gmail.com",
@@ -88,7 +103,10 @@ function sendMail(){
       "#01c94ecb"
     );
   }).catch();
-}
+  document.getElementById("form-email").reset();
+});
+
+
 
 function notificationPopup(message, icon, colorType) {
   $("#notification-message").text(message);
