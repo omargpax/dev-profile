@@ -699,6 +699,10 @@ button:focus {
   outline: none;
   cursor: pointer;
 }
+.email > form button:hover {
+  background-color: #7d7fff;
+  transition: all .3s ease-in;
+}
 .email > form textarea:focus,
 .email > form input:focus {
   border: 2px solid white;

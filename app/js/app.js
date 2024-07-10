@@ -5,7 +5,6 @@ const ws = document.getElementById("end-ms");
 
 const typing = (text, tiempo, etiqueta) => {
   let arrayCaracteres = text.split("");
-  console.log(arrayCaracteres);
   etiqueta.innerHTML = "";
   let i = 0;
   setInterval(() => {
@@ -37,7 +36,6 @@ typing(
 $(".detect-view").click(function () {
   $(".detect-view").removeClass("active");
   $(this).addClass("active");
-  console.log("hay");
 });
 
 $(".custom-close").click(function () {
@@ -89,20 +87,13 @@ $("#sendMail").click(function (event) {
   var serviceID = "service_omargpx"; // email service id
   var senderTemplate = "template_aa0bvkd"; // reply to sender
   var ownTemplate = "template_xirusui"; // reply to omargpax
-
-  emailjs.send(serviceID,ownTemplate, ownParams)
-  .then( res => {
-    console.log("replicated message")
-  }).catch();
-
-  emailjs.send(serviceID,senderTemplate, senderParams)
-  .then( res => {
-    notificationPopup(
-      "Email sent successfully",
-      "fa-regular fa-circle-check",
-      "#01c94ecb"
-    );
-  }).catch();
+  emailjs.send(serviceID,ownTemplate, ownParams);
+  emailjs.send(serviceID,senderTemplate, senderParams);
+  notificationPopup(
+    "Email sent successfully",
+    "fa-regular fa-circle-check",
+    "#01c94ecb"
+  );
   document.getElementById("form-email").reset();
 });
 
