@@ -44,6 +44,10 @@ $(".custom-close").click(function () {
 
 
 const handleFormSubmission = (name, correo, sms) => {
+  name = name.trim();
+  correo = correo.trim();
+  sms = sms.trim();
+
   if (!name || !correo || !sms) {
     notificationPopup("¡Fill in the boxes!", "fa-solid fa-circle-info", "#febd45b6");
     return;
