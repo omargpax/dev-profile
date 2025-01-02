@@ -45,7 +45,7 @@ $(".custom-close").click(function () {
 
 const handleFormSubmission = (name, correo, sms) => {
   if (!sms.trim()) {
-    notificationPopup("¡El mensaje no puede estar vacío!", "fa-solid fa-circle-info", "#febd45b6");
+    notificationPopup("¡Empty content!", "fa-solid fa-circle-info", "#febd45b6");
     return;
   }
 
@@ -58,6 +58,7 @@ const handleFormSubmission = (name, correo, sms) => {
     notificationPopup("¡Email is invalid!", "fa-regular fa-circle-xmark", "#fe615d");
     return;
   }
+  return true;
 };
 const validateEmail = (email) => {
   const validEmailRegex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -72,7 +73,7 @@ $("#sendMail").click(function (event) {
   let  name = document.getElementById("name").value, 
   correo = document.getElementById("email").value, 
   sms = document.getElementById("message").value;
-  handleFormSubmission(name, correo, sms);// verify content
+  if (!handleFormSubmission(name, correo, sms)) { return; }// verify content
   var senderParams = {
     sendername: document.querySelector("#name").value,
     to: document.querySelector("#email").value,
@@ -92,13 +93,18 @@ $("#sendMail").click(function (event) {
   var serviceID = "service_omargpx"; // email service id
   var senderTemplate = "template_aa0bvkd"; // reply to sender
   var ownTemplate = "template_xirusui"; // reply to omargpax
-  emailjs.send(serviceID,ownTemplate, ownParams);
+  emailjs.send(serviceID,ownTemplate, ownParams).then(function(response){
+    console.log("Email sent successfully");
+    notificationPopup(
+      "Email sent successfully",
+      "fa-regular fa-circle-check",
+      "#01c94ecb"
+    );
+  }, function(error){
+    console.log("Error sending email");
+    notificationPopup("¡Something wrong!", "fa-regular fa-circle-xmark", "#fe615d");
+  });
   emailjs.send(serviceID,senderTemplate, senderParams);
-  notificationPopup(
-    "Email sent successfully",
-    "fa-regular fa-circle-check",
-    "#01c94ecb"
-  );
   document.getElementById("form-email").reset();
 });
 
