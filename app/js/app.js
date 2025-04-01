@@ -122,3 +122,8 @@ function notificationPopup(message, icon, colorType) {
     }, 4000);
   }, 100);
 }
+
+//modal
+document.querySelector('.close-btn').addEventListener('click', () => {
+  document.querySelector('.modal-overlay').style.display = 'none';
+});

@@ -155,6 +155,10 @@
 	}
 }
 @media (max-width: 680px) {
+	.modal-overlay{
+		align-items: start;
+		justify-content: center;
+	  }
 	.special-content {
 		margin-bottom: 18%;
 	}
