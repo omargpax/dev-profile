@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>omargpax - dev profile</title>
+  <title>omargpax - designer profile</title>
   <meta name="title" content="omargpax - dev profile" />
   <meta name="description" content="On this website you will find my portfolio and more information about my projects." />
   <meta name="image" content="/assets/img/KunduRoom.jpg" />
@@ -50,21 +50,6 @@
 </head>
 
 <body>
-
-  <!-- ========== MODAL ========== -->
-  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Next.js portfolio">
-    <div class="modal-content">
-      <div class="image-container">
-        <img src="assets/img/vercel-portfolio.png" alt="Next.js portfolio preview" class="modal-image">
-        <button class="close-btn" id="close-modal" aria-label="Cerrar modal">✕</button>
-      </div>
-      <div class="modal-footer">
-        <h3 class="modal-title">Visit my Next.js portfolio</h3>
-        <a href="https://omargpax.vercel.app" class="modal-link" target="_blank" rel="noopener">Visit ↗</a>
-      </div>
-    </div>
-  </div>
-
   <!-- ========== MAIN LAYOUT ========== -->
   <div class="site-wrapper">
 
@@ -335,19 +320,17 @@
         <!-- Connections -->
         <div class="connections">
           <button class="conn-btn" onclick="window.open('reviews.html','_parent')">
-            <img src="/assets/img/business-3d-black-backpack.png" alt="" height="35">
+            <img src="/assets/img/business-3d-black-backpack.png" alt="bag_img" height="35">
             Dev reviews
           </button>
           <button class="conn-btn cv-btn" onclick="window.open('https://omargpax.dev/omargpax_cv_EN_.pdf')">
-            <img src="/assets/img/3d-casual-life-sheets-of-documents.png" alt="" height="35">
+            <img src="/assets/img/3d-casual-life-sheets-of-documents.png" alt="doc_img" height="35">
             View CV
           </button>
-          <div class="creator-badge-wrap">
-            <iframe
-              src="https://creator-badge.vercel.app/badge?img=https%3A%2F%2Fimg.freepik.com%2Fpremium-vector%2Flogo-kid-gamer_573604-730.jpg%3Fw%3D360&username=Omargpax&site=omargpax.vercel.app&rol=Software+Engineer&bgc=blue-purple&sound=FYTCH&ghid=omargpax&lnid=omargpax&xid=omargpax&igid=omargpax"
-              width="100%" height="100%" frameborder="0"
-              title="Creator badge" loading="lazy"></iframe>
-          </div>
+	    <button class="conn-btn dev-portfolio" onclick="window.open('https://omargpax.dev')">
+	      <img src="/assets/img/casual-life-3d-green-coffee-cup.png" alt="port-img" height="35">
+	    	Visit dev portfolio (actual)
+	    </button>
         </div>
         <!-- Spotify playlist -->
         <div class="playlist">
@@ -387,6 +370,7 @@
   <script src="/assets/jquery.js"></script>
   <script src="app/js/app.js"></script>
   <script>
+    if(window.location.hostname === 'omargpax.pages.dev'){window.location.replace('https://ui.omargpax.dev')}
     document.getElementById('year-copyright').textContent = new Date().getFullYear();
   </script>
 
